@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HIMANA | Portfolio</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-dark: #080711;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --neon-cyan: #00f2fe;
+            --neon-purple: #4facfe;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Animated Background Gradients */
+        .bg-glow {
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(79, 172, 254, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
+            top: -200px;
+            left: -200px;
+            z-index: -1;
+            animation: floatGlow 12s infinite alternate ease-in-out;
+        }
+
+        .bg-glow-2 {
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 242, 254, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
+            bottom: -100px;
+            right: -100px;
+            z-index: -1;
+            animation: floatGlow 15s infinite alternate-reverse ease-in-out;
+        }
+
+        @keyframes floatGlow {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(80px, 50px) scale(1.1); }
+        }
+
+        /* Glassmorphism Global Styles */
+        .glass-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 2.5rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 242, 254, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 242, 254, 0.05);
+        }
+
+        /* Typography Utilities */
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, var(--text-main) 30%, var(--neon-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--neon-purple), var(--neon-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Layout Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            background: rgba(8, 7, 17, 0.7);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 2rem;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+            text-decoration: none;
+            color: var(--text-main);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--neon-cyan);
+        }
+
+        /* Hero Section */
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 80px;
+        }
+
+        .hero-content h1 {
+            font-size: 4.5rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        .hero-tagline {
+            max-width: 700px;
+            margin: 0 auto 2.5rem auto;
+            font-size: 1.1rem;
+            color: var(--text-muted);
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 0.8rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--neon-purple), var(--neon-cyan));
+            color: #000;
+            box-shadow: 0 4px 15px rgba(0, 242, 254, 0.2);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 242, 254, 0.4);
+        }
+
+        .btn-secondary {
+            border: 1px solid var(--card-border);
+            color: var(--text-main);
+            background: transparent;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--text-muted);
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.2s 1fr;
+            gap: 2.5rem;
+            align-items: start;
+        }
+
+        @media (max-width: 768px) {
+            .about-grid { grid-template-columns: 1fr; }
+            .hero-content h1 { font-size: 3rem; }
+        }
+
+        .highlights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .highlight-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid var(--card-border);
+            padding: 1rem;
+            border-radius: 12px;
+        }
+
+        .highlight-item i {
+            color: var(--neon-cyan);
+            font-size: 1.3rem;
+        }
+
+        /* Skills Section */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-group h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+            border-left: 3px solid var(--neon-cyan);
+            padding-left: 0.7rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .tag {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--card-border);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .tag:hover {
+            border-color: var(--neon-cyan);
+            background: rgba(0, 242, 254, 0.05);
+            color: var(--neon-cyan);
+        }
+
+        /* Why Choose Me / Strengths Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card i {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--neon-purple), var(--neon-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 0.8rem;
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Education Timeline */
+        .timeline {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            padding-left: 2rem;
+            border-left: 2px solid var(--card-border);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            left: calc(-2rem - 7px);
+            top: 6px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--neon-cyan);
+            box-shadow: 0 0 10px var(--neon-cyan);
+        }
+
+        .timeline-content h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-list {
+            margin-top: 1rem;
+            margin-left: 1.2rem;
+            color: var(--text-muted);
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+        .project-card h3 {
+            margin-bottom: 1rem;
+        }
+
+        .project-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-tech {
+            font-size: 0.85rem;
+            color: var(--neon-cyan);
+            font-weight: 500;
+        }
+
+        /* Testimonials */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card p {
+            font-style: italic;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .testimonial-author::before {
+            content: "—";
+            color: var(--neon-purple);
+        }
+
+        /* Contact & Footer */
+        #contact {
+            text-align: center;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin: 2rem 0;
+            font-size: 1.1rem;
+        }
+
+        .contact-info a {
+            color: var(--text-main);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-info a:hover {
+            color: var(--neon-cyan);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            color: var(--text-muted);
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--neon-cyan);
+        }
+
+        footer {
+            text-align: center;
+            padding: 4rem 2rem;
+            border-top: 1px solid var(--card-border);
+            margin-top: 5rem;
+        }
+
+        footer h2 {
+            margin-bottom: 0.5rem;
+        }
+
+        footer p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Scroll Animation Utility */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background decorative animations -->
+    <div class="bg-glow"></div>
+    <div class="bg-glow-2"></div>
+
+    <!-- Header / Nav -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">HIMANA<span style="color: var(--neon-cyan);">.</span></a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="hero-content container">
+            <h1>HIMANA</h1>
+            <div class="hero-subtitle">Electronics & Communication Engineering | <span class="gradient-text">Final Year Student</span></div>
+            <p class="hero-tagline">"Transforming ideas into intelligent solutions through technology, innovation, and leadership."</p>
+            <p class="hero-tagline" style="margin-top: -1.5rem; font-size: 1rem;">
+                A passionate Electronics and Communication Engineering student with a strong foundation in ECE core concepts, software development, and communication technologies. Known for exceptional communication skills, proactive leadership, and a hyperactive drive to learn, build, and innovate.
+            </p>
+            <div class="btn-group">
+                <a href="#contact" class="btn btn-primary">Contact Me</a>
+                <a href="#" class="btn btn-secondary"><i class="fa-solid fa-download" style="margin-right: 8px;"></i>Download Resume</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="container reveal">
+        <h2 class="section-title">Who Am I?</h2>
+        <div class="about-grid">
+            <div class="glass-card">
+                <p>Hello! I'm <strong>HIMANA</strong>, a final-year Electronics and Communication Engineering student who believes technology becomes impactful when combined with creativity, communication, and execution.</p>
+                <br>
+                <p>I thrive in dynamic environments, enjoy solving challenging problems, and continuously seek opportunities to create meaningful solutions.</p>
+            </div>
+            <div class="glass-card">
+                <h3>My Journey Spans Across</h3>
+                <div class="highlights-grid">
+                    <div class="highlight-item"><i class="fa-solid fa-microchip"></i> Electronics & Comm. Systems</div>
+                    <div class="highlight-item"><i class="fa-solid fa-code"></i> Programming & Software</div>
+                    <div class="highlight-item"><i class="fa-solid fa-list-check"></i> Project Management</div>
+                    <div class="highlight-item"><i class="fa-solid fa-comments"></i> Public Speaking</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="highlights-grid" style="margin-top: 2.5rem;">
+            <div class="highlight-item"><i class="fa-solid fa-graduation-cap"></i> Final Year ECE Student</div>
+            <div class="highlight-item"><i class="fa-solid fa-laptop-code"></i> Strong Programming Skills</div>
+            <div class="highlight-item"><i class="fa-solid fa-satellite-dish"></i> ECE Core Specialist</div>
+            <div class="highlight-item"><i class="fa-solid fa-bullhorn"></i> Excellent Communication Skills</div>
+            <div class="highlight-item"><i class="fa-solid fa-bolt"></i> Hyperactive Learner & Innovator</div>
+            <div class="highlight-item"><i class="fa-solid fa-users"></i> Team Management & Leadership</div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="container reveal">
+        <h2 class="section-title">Technical Expertise</h2>
+        <div class="skills-container">
+            <div class="glass-card skill-group">
+                <h3>Electronics & Communication</h3>
+                <div class="skill-tags">
+                    <div class="tag">Digital Communication</div>
+                    <div class="tag">Analog Communication</div>
+                    <div class="tag">Signal Processing</div>
+                    <div class="tag">Embedded Systems</div>
+                    <div class="tag">Microprocessors & Microcontrollers</div>
+                    <div class="tag">VLSI Fundamentals</div>
+                    <div class="tag">Wireless Communication</div>
+                    <div class="tag">Networking Concepts</div>
+                </div>
+            </div>
+            <div class="glass-card skill-group">
+                <h3>Programming & Web</h3>
+                <div class="skill-tags">
+                    <div class="tag">C Programming</div>
+                    <div class="tag">C++</div>
+                    <div class="tag">Java</div>
+                    <div class="tag">Python</div>
+                    <div class="tag">JavaScript</div>
+                    <div class="tag">Data Structures & Algorithms</div>
+                    <div class="tag">HTML5 / CSS3</div>
+                    <div class="tag">Responsive Design</div>
+                    <div class="tag">UI/UX Fundamentals</div>
+                </div>
+            </div>
+            <div class="glass-card skill-group">
+                <h3>Tools & Ecosystems</h3>
+                <div class="skill-tags">
+                    <div class="tag">MATLAB</div>
+                    <div class="tag">Arduino IDE</div>
+                    <div class="tag">VS Code</div>
+                    <div class="tag">Git & GitHub</div>
+                    <div class="tag">Multisim</div>
+                    <div class="tag">Proteus</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Me -->
+    <section class="container reveal">
+        <h2 class="section-title">What Makes Me Different</h2>
+        <div class="features-grid">
+            <div class="glass-card feature-card">
+                <i class="fa-solid fa-message"></i>
+                <h3>Communication Excellence</h3>
+                <p>Strong verbal and written communication skills that help bridge the gap between technical concepts and practical implementation.</p>
+            </div>
+            <div class="glass-card feature-card">
+                <i class="fa-solid fa-crown"></i>
+                <h3>Leadership & Management</h3>
+                <p>Capable of organizing teams, coordinating projects, and ensuring successful outcomes through effective management.</p>
+            </div>
+            <div class="glass-card feature-card">
+                <i class="fa-solid fa-lightbulb"></i>
+                <h3>Problem Solving</h3>
+                <p>Analytical thinker with the ability to identify challenges and develop efficient solutions.</p>
+            </div>
+            <div class="glass-card feature-card">
+                <i class="fa-solid fa-gauge-high"></i>
+                <h3>Fast Learner</h3>
+                <p>Quickly adapts to new technologies, tools, and environments while maintaining high productivity.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="container reveal">
+        <h2 class="section-title">Education & Goals</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="glass-card timeline-content">
+                    <h3>Bachelor of Technology</h3>
+                    <h4 class="gradient-text">Electronics and Communication Engineering</h4>
+                    <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;">Final Year Student</p>
+                    <p><strong>Focused Areas:</strong></p>
+                    <ul class="timeline-list">
+                        <li>Communication Systems & Embedded Technologies</li>
+                        <li>Signal Processing & Networking</li>
+                        <li>Software Development</li>
+                    </ul>
+                    <p style="margin-top: 1.5rem;"><strong>Current Academic Goal:</strong><br>Building innovative solutions that combine electronics and software technologies.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="container reveal">
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="projects-grid">
+            <div class="glass-card project-card">
+                <div>
+                    <h3>Smart Communication System</h3>
+                    <p>Designed and implemented an intelligent communication solution aimed at enhancing signal efficiency and reliability.</p>
+                </div>
+                <div class="project-tech">Embedded Systems • Communication Protocols • Signal Processing</div>
+            </div>
+            <div class="glass-card project-card">
+                <div>
+                    <h3>IoT Based Monitoring System</h3>
+                    <p>Developed a real-time monitoring platform capable of collecting and analyzing sensor data for smart applications.</p>
+                </div>
+                <div class="project-tech">IoT • Sensors • Microcontrollers • Web Dashboard</div>
+            </div>
+            <div class="glass-card project-card">
+                <div>
+                    <h3>Full Stack Web Application</h3>
+                    <p>Built a responsive and interactive web platform with modern UI principles and optimized user experience.</p>
+                </div>
+                <div class="project-tech">HTML • CSS • JavaScript</div>
+            </div>
+            <div class="glass-card project-card">
+                <div>
+                    <h3>Embedded Automation Project</h3>
+                    <p>Designed an automation system integrating hardware and software for efficient task execution.</p>
+                </div>
+                <div class="project-tech">Arduino • Embedded C • Sensors</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements & Philosophy -->
+    <section class="container reveal">
+        <h2 class="section-title">Key Accomplishments</h2>
+        <div class="about-grid">
+            <div class="glass-card">
+                <ul style="list-style: none; display: flex; flex-direction: column; gap: 1rem;">
+                    <li>🏆 Successfully led academic and technical teams.</li>
+                    <li>🏆 Demonstrated excellence in communication and presentation activities.</li>
+                    <li>🏆 Developed multiple software and ECE-based projects.</li>
+                    <li>🏆 Consistently recognized for leadership and organizational skills.</li>
+                    <li>🏆 Strong performer in technical discussions and collaborative environments.</li>
+                </ul>
+            </div>
+            <div class="glass-card" style="display: flex; flex-direction: column; justify-content: center; border-left: 4px solid var(--neon-purple);">
+                <h3 style="margin-bottom: 0.5rem; font-style: italic;">Experience Philosophy</h3>
+                <p style="color: var(--text-muted); font-size: 1.1rem; line-height: 1.7;">
+                    "I believe the future belongs to professionals who can combine technical expertise, effective communication, and strong leadership. My goal is to create technology that solves real-world problems while inspiring innovation and collaboration."
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="container reveal">
+        <h2 class="section-title">Feedback</h2>
+        <div class="testimonials-grid">
+            <div class="glass-card testimonial-card">
+                <p>"HIMANA brings unmatched energy and leadership to every project. Her ability to communicate ideas clearly and execute them effectively makes her an exceptional teammate."</p>
+                <div class="testimonial-author">Team Member</div>
+            </div>
+            <div class="glass-card testimonial-card">
+                <p>"A highly motivated student with strong technical understanding and excellent management capabilities."</p>
+                <div class="testimonial-author">Faculty Feedback</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Future Vision -->
+    <section class="container reveal" style="text-align: center;">
+        <h2 class="section-title">Looking Ahead</h2>
+        <div class="glass-card" style="max-width: 800px; margin: 0 auto;">
+            <p style="margin-bottom: 1.5rem; font-size: 1.1rem;">I aspire to contribute to innovative technology solutions in:</p>
+            <div class="skill-tags" style="justify-content: center; margin-bottom: 2rem;">
+                <span class="tag">Communication Technologies</span>
+                <span class="tag">Embedded Systems</span>
+                <span class="tag">Software Development</span>
+                <span class="tag">IoT Applications</span>
+                <span class="tag">Research & Innovation</span>
+            </div>
+            <p style="color: var(--text-muted);">My mission is to continuously learn, build impactful solutions, and become a technology leader who creates meaningful change.</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="container reveal">
+        <h2 class="section-title">Let's Connect</h2>
+        <div class="glass-card" style="max-width: 600px; margin: 0 auto;">
+            <p>Interested in collaborating, discussing opportunities, or building something amazing together?</p>
+            <div class="contact-info">
+                <div><i class="fa-solid fa-envelope" style="color: var(--neon-cyan); margin-right: 10px;"></i> <a href="mailto:himana@email.com">himana@email.com</a></div>
+                <div><i class="fa-solid fa-phone" style="color: var(--neon-purple); margin-right: 10px;"></i> +91 XXXXX XXXXX</div>
+                <div><i class="fa-solid fa-location-dot" style="color: var(--neon-cyan); margin-right: 10px;"></i> Andhra Pradesh, India</div>
+            </div>
+            <div class="social-links">
+                <a href="#"><i class="fa-brands fa-github"></i></a>
+                <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="#"><i class="fa-solid fa-envelope"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <h2>HIMANA</h2>
+        <p style="color: var(--neon-cyan); font-weight: 600; letter-spacing: 2px; margin-bottom: 1rem;">ENGINEER • INNOVATOR • LEADER</p>
+        <p style="font-style: italic; margin-bottom: 2rem;">"Driven by curiosity. Powered by technology. Focused on impact."</p>
+        <p>&copy; 2026 HIMANA | All Rights Reserved</p>
+    </footer>
+
+    <!-- JavaScript for Scroll Animations -->
+    <script>
+        function revealElements() {
+            const reveals = document.querySelectorAll(".reveal");
+            for (let i = 0; i < reveals.length; i++) {
+                const windowHeight = window.innerHeight;
+                const elementTop = reveals[i].getBoundingClientRect().top;
+                const elementVisible = 100; // Trigger point
+
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+
+        window.addEventListener("scroll", revealElements);
+        // Initial call to check elements on page load
+        revealElements();
+    </script>
+</body>
+</html>
